@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="loginfx.pkg1.ADMINFXMLController">
+   <children>
+      <TabPane prefHeight="28.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Sales Associate" />
+          <Tab text="Warehouse Manager" />
+            <Tab text="Office Manager" />
+        </tabs>
+      </TabPane>
+      <Button fx:id="btnLogout" layoutX="14.0" layoutY="561.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />
+   </children>
+</AnchorPane>
