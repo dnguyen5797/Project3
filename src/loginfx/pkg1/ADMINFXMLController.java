@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 
 /**
  * FXML Controller class
- * smol wangs
+ * 
  * @author Justin
  */
 public class ADMINFXMLController implements Initializable {
