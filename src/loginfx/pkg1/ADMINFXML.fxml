@@ -79,8 +79,9 @@
                             <TableColumn prefWidth="241.60000610351562" text="Password" />
                           </columns>
                         </TableView>
-                        <Button layoutX="158.0" layoutY="305.0" mnemonicParsing="false" text="Add" />
-                        <Button layoutX="590.0" layoutY="305.0" mnemonicParsing="false" text="Delete" />
+                        <Button layoutX="380.0" layoutY="305.0" mnemonicParsing="false" text="Add" />
+                        <Button layoutX="374.0" layoutY="387.0" mnemonicParsing="false" text="Delete" />
+                        <Button layoutX="381.0" layoutY="345.0" mnemonicParsing="false" text="Edit" />
                      </children>
                   </AnchorPane>
               </content>
