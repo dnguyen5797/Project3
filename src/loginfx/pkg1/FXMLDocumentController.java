@@ -76,6 +76,15 @@ public class FXMLDocumentController implements Initializable {
             window.show();
         }
         
+        else if(txtUserName.getText().equals("office") && txtPassword.getText().equals("manager")){
+            Parent youInParent = FXMLLoader.load(getClass().getResource("OfficeManager.fxml"));
+            Scene youInScene = new Scene (youInParent);
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(youInScene);
+            window.show();
+        }
+        
         else{
             lblStatus.setText("Login Failed :( ");
         }
