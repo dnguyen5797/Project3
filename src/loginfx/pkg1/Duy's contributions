@@ -1,0 +1,7 @@
+I designed and created the tabs and their functionality in ADMINFXML.fxml if the admin
+were to sign in. There is a test tab where we could use as a possible tab design if we wanted to change
+to that design. In the test lab there will be a list view of the usernames and passwords along with
+an 'Add' or 'Delete' button which will redirect the admin to another scene to enter their desired add/delete.
+When an admin logs in a file will automatically be read which will hold the usernames and passwords to
+either the warehouse manager, office manager, or sale associate. Upon logging out the file changes will be
+saved to the file that was opened.
