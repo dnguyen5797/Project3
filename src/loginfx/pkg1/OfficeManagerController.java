@@ -7,6 +7,8 @@ package loginfx.pkg1;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,7 +46,14 @@ public class OfficeManagerController implements Initializable {
     private ArrayList<BikePart> MainWHArray;
 
     private void SearchByPartNameAction(ActionEvent SearchByPartName) {
-
+        ExaminePartsTextArea.appendText("\n");
+        String name = SearchPartNameText.getText();
+                for (int i = 0; i < MainWHArray.size(); i++) {
+                    if (MainWHArray.get(i).getPartName().equals(name)) {
+                        SearchPartNameText.appendText("Part Information: " + MainWHArray.get(i).getPartName() + "\n" + MainWHArray.get(i).getPartNum() + "\n" + MainWHArray.get(i).getPrice() + "\n" + MainWHArray.get(i).getQuantity() + " \n");
+                    }
+                }
+            
     }
 
     private void SearchByPartNumberAction(ActionEvent SearchByPartNumber) {
@@ -52,14 +61,24 @@ public class OfficeManagerController implements Initializable {
     }
 
     private void LogoutButtonAction(ActionEvent LogoutButtonAction) {
+        try {
+            PrintWriter writer = new PrintWriter("MainWH.txt", "UTF-8");
+            for (int i = 0; i < MainWHArray.size(); i++) {
+                writer.println(MainWHArray.get(i).getPartName() + ", " + MainWHArray.get(i).getPartNum() + ", " + MainWHArray.get(i).getListPrice()
+                        + ", " + MainWHArray.get(i).getSalePrice() + ", " + MainWHArray.get(i).isOnSale() + ", " + MainWHArray.get(i).getQuantity());
+            }
+            writer.close();
 
+        } catch (IOException e) {
+            System.out.println("file error!");
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("This happens first.");
         File file = new File("MainWH.txt");
-        ArrayList<BikePart> oldList = new ArrayList<BikePart>();
         try {
             Scanner read = new Scanner(file);
             while (read.hasNextLine()) {
@@ -72,7 +91,6 @@ public class OfficeManagerController implements Initializable {
             }
         } catch (FileNotFoundException e) {
             System.out.println("file not found");
-            e.printStackTrace();
         }
     }
 
