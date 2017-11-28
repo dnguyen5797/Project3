@@ -23,7 +23,7 @@
                         <Text layoutX="34.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Part Name" />
                         <Text layoutX="35.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Part Number" />
                         <Button fx:id="SearchPartNumberButton" layoutX="221.0" layoutY="167.0" mnemonicParsing="false" text="Search" />
-                        <Button fx:id="SearchPartNameButton" layoutX="221.0" layoutY="67.0" mnemonicParsing="false" text="Search" />
+                        <Button fx:id="SearchPartNameButton" layoutX="221.0" layoutY="67.0" mnemonicParsing="false" onAction="#SearchByPartNameAction" text="Search" />
                      </children>
                   </AnchorPane>
             </content>
