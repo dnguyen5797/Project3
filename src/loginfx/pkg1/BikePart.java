@@ -29,15 +29,15 @@ public class BikePart implements Comparable<BikePart> {
      * @param onSale
      * @param quantity
      */
-    public BikePart(String partName, int partNum, double listPrice, double salePrice, boolean onSale, int quantity, int minQuantity) {
-        this.partName = partName;
-        this.partNum = partNum;
-        this.listPrice = listPrice;
-        this.salePrice = salePrice;
-        this.onSale = onSale;
-        this.quantity = quantity;
-        this.minQuantity = minQuantity;
-    }
+//    public BikePart(String partName, int partNum, double listPrice, double salePrice, boolean onSale, int quantity, int minQuantity) {
+//        this.partName = partName;
+//        this.partNum = partNum;
+//        this.listPrice = listPrice;
+//        this.salePrice = salePrice;
+//        this.onSale = onSale;
+//        this.quantity = quantity;
+//        this.minQuantity = minQuantity;
+//    }
 
     /**
      * Constructor
@@ -49,14 +49,14 @@ public class BikePart implements Comparable<BikePart> {
      * @param quantity
      * @param minQuantity
      */
-    public BikePart(String partName, int partNum, String listPrice, String salePrice, Boolean onSale, String quantity, String minQuantity) {
+    public BikePart(String partName, int partNum, double listPrice, double salePrice, Boolean onSale, int quantity) {
         this.partName = partName;
         this.partNum = partNum;
-        this.listPrice = Double.parseDouble(listPrice);
-        this.salePrice = Double.parseDouble(salePrice);
+        this.listPrice = listPrice;
+        this.salePrice = salePrice;
         this.onSale = onSale;
-        this.quantity = Integer.parseInt(quantity);
-        this.minQuantity = Integer.parseInt(minQuantity);
+        this.quantity = quantity;
+//        this.minQuantity = Integer.parseInt(minQuantity);
     }
 
     /**
@@ -64,7 +64,7 @@ public class BikePart implements Comparable<BikePart> {
      *
      * @return
      */
-    public String getpartName() {
+    public String getPartName() {
         return partName;
     }
 
@@ -73,7 +73,7 @@ public class BikePart implements Comparable<BikePart> {
      *
      * @return
      */
-    public int getpartNum() {
+    public int getPartNum() {
         return partNum;
     }
 
@@ -82,7 +82,7 @@ public class BikePart implements Comparable<BikePart> {
      *
      * @return
      */
-    public double getlistPrice() {
+    public double getListPrice() {
         return listPrice;
     }
 
@@ -91,7 +91,7 @@ public class BikePart implements Comparable<BikePart> {
      *
      * @return
      */
-    public double getsalePrice() {
+    public double getSalePrice() {
         return salePrice;
     }
 
@@ -100,7 +100,7 @@ public class BikePart implements Comparable<BikePart> {
      *
      * @return
      */
-    public boolean getonSale() {
+    public boolean isOnSale() {
         return onSale;
     }
 
@@ -112,9 +112,9 @@ public class BikePart implements Comparable<BikePart> {
     public int getQuantity() {
         return quantity;
     }
-    public int getminQuantity() {
-        return minQuantity;
-    }
+//    public int getminQuantity() {
+//        return minQuantity;
+//    }
     /**
      * Sets the quantity
      *
@@ -128,7 +128,7 @@ public class BikePart implements Comparable<BikePart> {
      * Adds quantity
      * @param quantity
      */
-    public void quantityAdd(int quantity) {
+    public void addQuantity(int quantity) {
         this.quantity += quantity;
     }
 
@@ -136,7 +136,7 @@ public class BikePart implements Comparable<BikePart> {
      * Subtracts quantity
      * @param quantity
      */
-    public void quantityDel(int quantity) {
+    public void removeQuantity(int quantity) {
         this.quantity -= quantity;
     }
 
@@ -145,12 +145,21 @@ public class BikePart implements Comparable<BikePart> {
      *
      * @return
      */
-    public double priceGet() {
+    public double getPrice() {
         if (onSale == true) {
             return salePrice;
         } else {
             return listPrice;
         }
+    }
+    public void setSale(boolean onSale){
+        this.onSale = onSale;
+    }
+    public void setListPrice(double price){
+        this.listPrice = price;
+    }
+    public void setSalePrice(double price){
+        this.salePrice = price;
     }
 
     /**
@@ -169,7 +178,7 @@ public class BikePart implements Comparable<BikePart> {
      */
     @Override
     public int compareTo(BikePart some) {
-        String comparename = ((BikePart) some).getpartName();
+        String comparename = ((BikePart) some).getPartName();
         return this.partName.compareTo(comparename);
     }
 
