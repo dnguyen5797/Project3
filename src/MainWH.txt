@@ -1,0 +1,3 @@
+partName,1234567890,2.50,1.50,true,5
+partNameTwo,1234567899,2.50,1.50,true,4
+partNameThree,1234567889,2.50,1.50,false,3

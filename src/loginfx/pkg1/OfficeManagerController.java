@@ -42,24 +42,76 @@ public class OfficeManagerController implements Initializable {
 
     @FXML
     private TextField SearchPartNumberText;
-
+    
+    @FXML
+    private Button OrderQuantityButton;
+    
+    @FXML
+    private TextField EnterOrderQuantity;
+    
+    @FXML
+    private TextArea OrderPartsTextArea;
+    
+    @FXML
+    private TextArea OrderPartsTextArea1;
+    
+    @FXML
+    private Button BeginOrderButton;
+    
     private ArrayList<BikePart> MainWHArray;
-
-    private void SearchByPartNameAction(ActionEvent SearchByPartName) {
+//    private ArrayList<BikePart> PartsNeeded;
+    
+    @FXML
+    private void Order(ActionEvent Order){
+        for(int x = 0; x < MainWHArray.size(); x++){
+            if(MainWHArray.get(x).getQuantity() < 5){
+                OrderPartsTextArea.appendText("\n"+MainWHArray.get(x).getPartName() + "   --   " + MainWHArray.get(x).getQuantity());
+//                PartsNeeded.add(MainWHArray.get(x));
+            }
+        }
+        for(int x = 0; x < MainWHArray.size(); x++){
+            if(MainWHArray.get(x).getQuantity() < 5){
+                OrderPartsTextArea1.appendText("\n"+MainWHArray.get(x).getPartName() + "   --   " + MainWHArray.get(x).getQuantity());
+                OrderPartsTextArea1.appendText("\nHow many parts would you like to order?");
+                int whichPart = x;
+                OrderQuantityButton.setOnAction((event) -> {
+                    if(EnterOrderQuantity.getText().equals(null)){EnterOrderQuantity.setText("0");}
+                    int addQuantity = Integer.parseInt(EnterOrderQuantity.getText());
+                    EnterOrderQuantity.clear();
+                    MainWHArray.get(whichPart).addQuantity(addQuantity);
+                    OrderPartsTextArea.appendText("\nOrdered " + addQuantity + "x " + MainWHArray.get(whichPart).getPartName() + ".");
+                });
+            }
+        }
+        OrderPartsTextArea.appendText("\nThis order has been completed..");
+    }
+    
+    @FXML
+    private void SearchByPartNameAction(ActionEvent SearchByPartNameAction) {
         ExaminePartsTextArea.appendText("\n");
         String name = SearchPartNameText.getText();
                 for (int i = 0; i < MainWHArray.size(); i++) {
                     if (MainWHArray.get(i).getPartName().equals(name)) {
-                        SearchPartNameText.appendText("Part Information: " + MainWHArray.get(i).getPartName() + "\n" + MainWHArray.get(i).getPartNum() + "\n" + MainWHArray.get(i).getPrice() + "\n" + MainWHArray.get(i).getQuantity() + " \n");
+                        SearchPartNameText.appendText("Part Information: \n" + 
+                                "Part Name: " + MainWHArray.get(i).getPartName() + "\nPart Number: " + MainWHArray.get(i).getPartNum() + "\nPart Price: $" + MainWHArray.get(i).getPrice() + "\nPart Quantity: " + MainWHArray.get(i).getQuantity() + " \n");
                     }
                 }
             
     }
-
-    private void SearchByPartNumberAction(ActionEvent SearchByPartNumber) {
-
+    
+    @FXML
+    private void SearchByPartNumberAction(ActionEvent SearchByPartNumberAction) {
+        ExaminePartsTextArea.appendText("\n");
+        int name = Integer.parseInt(SearchPartNumberText.getText());
+                for (int i = 0; i < MainWHArray.size(); i++) {
+                    if (name == MainWHArray.get(i).getPartNum()) {
+                        SearchPartNameText.appendText("Part Information: \n" + 
+                                "Part Name: " + MainWHArray.get(i).getPartName() + "\nPart Number: " + MainWHArray.get(i).getPartNum() + "\nPart Price: $" + MainWHArray.get(i).getPrice() + "\nPart Quantity: " + MainWHArray.get(i).getQuantity() + " \n");
+                    }
+                }
     }
-
+    
+    @FXML
     private void LogoutButtonAction(ActionEvent LogoutButtonAction) {
         try {
             PrintWriter writer = new PrintWriter("MainWH.txt", "UTF-8");
@@ -71,7 +123,6 @@ public class OfficeManagerController implements Initializable {
 
         } catch (IOException e) {
             System.out.println("file error!");
-            e.printStackTrace();
         }
     }
 
@@ -85,12 +136,19 @@ public class OfficeManagerController implements Initializable {
                 String line = read.nextLine();
                 String regExp = "\\s*(\\s|,)\\s*";
                 String[] pv = line.split(regExp);
+                System.out.println(pv);
                 System.out.println(Arrays.toString(pv));
                 BikePart bp = new BikePart(pv[0], Integer.parseInt(pv[1]), Double.parseDouble(pv[2]), Double.parseDouble(pv[3]), java.lang.Boolean.parseBoolean(pv[4]), Integer.parseInt(pv[5]));
                 MainWHArray.add(bp);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("file not found");
+            System.out.println("File not found");
+        }
+        for(int x = 0; x < MainWHArray.size(); x++){
+            if(MainWHArray.get(x).getQuantity() < 5){
+                OrderPartsTextArea.appendText("An order needs to be made! \nClick the 'Begin Order' button to start the process.");
+                break;
+            }
         }
     }
 
