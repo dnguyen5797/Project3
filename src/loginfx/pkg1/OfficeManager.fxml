@@ -32,14 +32,13 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="GenerateOrderButton" layoutX="298.0" layoutY="308.0" mnemonicParsing="false" text="Generate Order" />
-                        <TextArea fx:id="OrderPartsTextArea" layoutX="103.0" layoutY="83.0" prefHeight="200.0" prefWidth="245.0" />
+                        <TextArea fx:id="OrderPartsTextArea" layoutX="40.0" layoutY="83.0" prefHeight="200.0" prefWidth="308.0" />
                         <Button fx:id="LogoutButton1" layoutX="14.0" layoutY="375.0" mnemonicParsing="false" onAction="#LogoutButtonAction" text="Logout" />
                         <TextArea fx:id="OrderPartsTextArea1" layoutX="348.0" layoutY="83.0" prefHeight="107.0" prefWidth="245.0" />
                         <Button fx:id="OrderQuantityButton" layoutX="532.0" layoutY="222.0" mnemonicParsing="false" text="Add" />
                         <TextField fx:id="EnterOrderQuantity" layoutX="361.0" layoutY="222.0" />
                         <Text layoutX="362.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter number here" />
-                        <Button fx:id="BeginOrderButton" layoutX="308.0" layoutY="39.0" mnemonicParsing="false" text="Begin Order" />
+                        <Button fx:id="BeginOrderButton" layoutX="308.0" layoutY="39.0" mnemonicParsing="false" onAction="#BeginOrderButtonAction" text="Begin Order" />
                      </children>
                   </AnchorPane>
             </content>

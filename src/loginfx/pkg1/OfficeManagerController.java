@@ -16,10 +16,15 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -53,18 +58,26 @@ public class OfficeManagerController implements Initializable {
     private TextArea OrderPartsTextArea;
     
     @FXML
-    private TextArea OrderPartsTextArea1;
+    private TextArea OrderPartsTextArea1;   
     
+    private final ArrayList<BikePart> MainWHArray = new ArrayList<>();
+//    private ArrayList<BikePart> PartsNeeded;
+    @FXML
+    private Button LogoutButton;
+    @FXML
+    private Button LogoutButton1;
     @FXML
     private Button BeginOrderButton;
-    
-    private ArrayList<BikePart> MainWHArray;
-//    private ArrayList<BikePart> PartsNeeded;
+    @FXML
+    private Button LogoutButton2;
     
     @FXML
-    private void Order(ActionEvent Order){
+    private void BeginOrderButtonAction(ActionEvent BeginButtonOrderAction){
+        System.out.println("Got here");
         for(int x = 0; x < MainWHArray.size(); x++){
+            System.out.println("Got to the first loop");
             if(MainWHArray.get(x).getQuantity() < 5){
+                System.out.println("Got to the first if");
                 OrderPartsTextArea.appendText("\n"+MainWHArray.get(x).getPartName() + "   --   " + MainWHArray.get(x).getQuantity());
 //                PartsNeeded.add(MainWHArray.get(x));
             }
@@ -92,7 +105,7 @@ public class OfficeManagerController implements Initializable {
         String name = SearchPartNameText.getText();
                 for (int i = 0; i < MainWHArray.size(); i++) {
                     if (MainWHArray.get(i).getPartName().equals(name)) {
-                        SearchPartNameText.appendText("Part Information: \n" + 
+                        ExaminePartsTextArea.appendText("Part Information: \n" + 
                                 "Part Name: " + MainWHArray.get(i).getPartName() + "\nPart Number: " + MainWHArray.get(i).getPartNum() + "\nPart Price: $" + MainWHArray.get(i).getPrice() + "\nPart Quantity: " + MainWHArray.get(i).getQuantity() + " \n");
                     }
                 }
@@ -105,14 +118,14 @@ public class OfficeManagerController implements Initializable {
         int name = Integer.parseInt(SearchPartNumberText.getText());
                 for (int i = 0; i < MainWHArray.size(); i++) {
                     if (name == MainWHArray.get(i).getPartNum()) {
-                        SearchPartNameText.appendText("Part Information: \n" + 
+                        ExaminePartsTextArea.appendText("Part Information: \n" + 
                                 "Part Name: " + MainWHArray.get(i).getPartName() + "\nPart Number: " + MainWHArray.get(i).getPartNum() + "\nPart Price: $" + MainWHArray.get(i).getPrice() + "\nPart Quantity: " + MainWHArray.get(i).getQuantity() + " \n");
                     }
                 }
     }
     
     @FXML
-    private void LogoutButtonAction(ActionEvent LogoutButtonAction) {
+    private void LogoutButtonAction(ActionEvent LogoutButtonAction) throws IOException {
         try {
             PrintWriter writer = new PrintWriter("MainWH.txt", "UTF-8");
             for (int i = 0; i < MainWHArray.size(); i++) {
@@ -124,6 +137,13 @@ public class OfficeManagerController implements Initializable {
         } catch (IOException e) {
             System.out.println("file error!");
         }
+        Parent youInParent = FXMLLoader.load(getClass().getResource("LoginFXML.fxml"));
+            Scene youInScene = new Scene(youInParent);
+            //this line gets the stage information
+            Stage window = (Stage)((Node)LogoutButtonAction.getSource()).getScene().getWindow();
+            
+            window.setScene(youInScene);
+            window.show();
     }
 
     @Override
@@ -139,6 +159,7 @@ public class OfficeManagerController implements Initializable {
                 System.out.println(pv);
                 System.out.println(Arrays.toString(pv));
                 BikePart bp = new BikePart(pv[0], Integer.parseInt(pv[1]), Double.parseDouble(pv[2]), Double.parseDouble(pv[3]), java.lang.Boolean.parseBoolean(pv[4]), Integer.parseInt(pv[5]));
+                System.out.println(bp.getPartName());
                 MainWHArray.add(bp);
             }
         } catch (FileNotFoundException e) {
