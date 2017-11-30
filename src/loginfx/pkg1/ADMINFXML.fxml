@@ -10,7 +10,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loginfx.pkg1.ADMINFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loginfx.pkg1.ADMINFXMLController">
    <children>
       <Button fx:id="btnLogout" layoutX="14.0" layoutY="561.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />
       <TabPane prefHeight="561.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
@@ -73,10 +73,11 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="158.0" layoutY="66.0" prefHeight="200.0" prefWidth="484.0">
+                        <TableView layoutX="34.0" layoutY="66.0" prefHeight="200.0" prefWidth="733.0">
                           <columns>
                             <TableColumn prefWidth="243.199951171875" text="Username" />
                             <TableColumn prefWidth="241.60000610351562" text="Password" />
+                              <TableColumn prefWidth="243.199951171875" text="Type" />
                           </columns>
                         </TableView>
                         <Button layoutX="380.0" layoutY="305.0" mnemonicParsing="false" text="Add" />
