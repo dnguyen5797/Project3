@@ -35,7 +35,7 @@
                         <TextArea fx:id="OrderPartsTextArea" layoutX="40.0" layoutY="83.0" prefHeight="200.0" prefWidth="308.0" />
                         <Button fx:id="LogoutButton1" layoutX="14.0" layoutY="375.0" mnemonicParsing="false" onAction="#LogoutButtonAction" text="Logout" />
                         <TextArea fx:id="OrderPartsTextArea1" layoutX="348.0" layoutY="83.0" prefHeight="107.0" prefWidth="245.0" />
-                        <Button fx:id="OrderQuantityButton" layoutX="532.0" layoutY="222.0" mnemonicParsing="false" text="Add" />
+                        <Button fx:id="OrderQuantityButton" layoutX="532.0" layoutY="222.0" mnemonicParsing="false" onAction="#OrderQuantityButton" text="Add" />
                         <TextField fx:id="EnterOrderQuantity" layoutX="361.0" layoutY="222.0" />
                         <Text layoutX="362.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter number here" />
                         <Button fx:id="BeginOrderButton" layoutX="308.0" layoutY="39.0" mnemonicParsing="false" onAction="#BeginOrderButtonAction" text="Begin Order" />
