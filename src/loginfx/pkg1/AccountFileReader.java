@@ -43,7 +43,7 @@ public class AccountFileReader {
                 String line = read.nextLine();
                 String regExp = "\\s*(\\s|,)\\s";
                 String[] pv = line.split(",");
-                Accounts accArray = new Accounts(pv[0], pv[1], pv[2]);
+                Accounts accArray = new Accounts(pv[0], pv[1]);
                 retList.add(accArray);
             }
             return retList;
