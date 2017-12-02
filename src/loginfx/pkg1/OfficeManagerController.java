@@ -61,7 +61,7 @@ public class OfficeManagerController implements Initializable {
     private TextArea OrderPartsTextArea1;
 
     private final ArrayList<BikePart> MainWHArray = new ArrayList<>();
-//    private ArrayList<BikePart> PartsNeeded;
+    
     @FXML
     private Button LogoutButton;
     @FXML
@@ -80,7 +80,6 @@ public class OfficeManagerController implements Initializable {
                 OrderPartsTextArea.appendText("\n" + MainWHArray.get(x).getPartName() + "   --   " + MainWHArray.get(x).getQuantity());
                 OrderPart temp = new OrderPart(MainWHArray.get(x), 0);
                 partsNeeded.add(temp);
-//                PartsNeeded.add(MainWHArray.get(x));
             }
         }
         OrderPartsTextArea1.appendText("\nEnter the number of parts you want to order, \nin order, separated by commas.");
@@ -92,10 +91,10 @@ public class OfficeManagerController implements Initializable {
         String numbers = EnterOrderQuantity.getText();
         String regExp = "\\s*(\\s|,)\\s*";
         String[] splitNumbers = numbers.split(regExp);
-        System.out.println(splitNumbers.toString());
+        System.out.println(Arrays.toString(splitNumbers));
         ArrayList<Integer> ints = new ArrayList<>();
-        for(int x = 0; x < splitNumbers.length;x++){
-            ints.add(Integer.parseInt(splitNumbers[x]));
+        for (String splitNumber : splitNumbers) {
+            ints.add(Integer.parseInt(splitNumber));
         }
         System.out.println("Loop 1");
         for(int i = 0; i < partsNeeded.size();i++){
@@ -141,25 +140,29 @@ public class OfficeManagerController implements Initializable {
     @FXML
     private void LogoutButtonAction(ActionEvent LogoutButtonAction) throws IOException {
         try {
-            PrintWriter writer = new PrintWriter("MainWH.txt", "UTF-8");
-            for (int i = 0; i < MainWHArray.size(); i++) {
-                writer.println(MainWHArray.get(i).getPartName() + ", " + MainWHArray.get(i).getPartNum() + ", " + MainWHArray.get(i).getListPrice()
-                        + ", " + MainWHArray.get(i).getSalePrice() + ", " + MainWHArray.get(i).isOnSale() + ", " + MainWHArray.get(i).getQuantity());
+            try (PrintWriter writer = new PrintWriter("MainWH.txt", "UTF-8")) {
+                for (int i = 0; i < MainWHArray.size(); i++) {
+                    writer.println(MainWHArray.get(i).getPartName() + ", " + MainWHArray.get(i).getPartNum() + ", " + MainWHArray.get(i).getListPrice()
+                            + ", " + MainWHArray.get(i).getSalePrice() + ", " + MainWHArray.get(i).isOnSale() + ", " + MainWHArray.get(i).getQuantity());
+                }
             }
-            writer.close();
 
         } catch (IOException e) {
             System.out.println("file error!");
         }
         Parent youInParent = FXMLLoader.load(getClass().getResource("LoginFXML.fxml"));
         Scene youInScene = new Scene(youInParent);
-        //this line gets the stage information
         Stage window = (Stage) ((Node) LogoutButtonAction.getSource()).getScene().getWindow();
 
         window.setScene(youInScene);
         window.show();
     }
-
+    
+    @FXML
+    private void FindPayAction(ActionEvent FindPayAction){
+        
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         OrderPartsTextArea1.appendText("-----");
@@ -171,7 +174,6 @@ public class OfficeManagerController implements Initializable {
                 String line = read.nextLine();
                 String regExp = "\\s*(\\s|,)\\s*";
                 String[] pv = line.split(regExp);
-                System.out.println(pv);
                 System.out.println(Arrays.toString(pv));
                 BikePart bp = new BikePart(pv[0], Integer.parseInt(pv[1]), Double.parseDouble(pv[2]), Double.parseDouble(pv[3]), java.lang.Boolean.parseBoolean(pv[4]), Integer.parseInt(pv[5]));
                 System.out.println(bp.getPartName());

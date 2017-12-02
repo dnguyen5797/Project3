@@ -7,7 +7,12 @@ package loginfx.pkg1;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -16,9 +21,32 @@ import javafx.fxml.Initializable;
  */
 public class SalesAssociateController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private TextField SalesAssociateText;
+    
+    @FXML
+    private TextField PartNameText;
+    
+    @FXML
+    private TextField PartNumberText;
+    
+    @FXML
+    private Button AddPartInvoice;
+    
+    @FXML
+    private TextArea DisplayTextArea;
+    
+    @FXML
+    private Button GenerateInvoice;
+    
+    @FXML
+    private TextField Quantity;
+    
+    @FXML
+    private void AddPartInvoice(ActionEvent AddPartInvoice){
+        
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
