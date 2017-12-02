@@ -73,11 +73,11 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="34.0" layoutY="66.0" prefHeight="200.0" prefWidth="733.0">
+                        <TableView fx:id="table" layoutX="34.0" layoutY="66.0" prefHeight="200.0" prefWidth="733.0">
                           <columns>
-                            <TableColumn prefWidth="243.199951171875" text="Username" />
-                            <TableColumn prefWidth="241.60000610351562" text="Password" />
-                              <TableColumn prefWidth="243.199951171875" text="Type" />
+                            <TableColumn fx:id="user" prefWidth="243.199951171875" text="Username" />
+                            <TableColumn fx:id="pass" prefWidth="241.60000610351562" text="Password" />
+                              <TableColumn fx:id="type" prefWidth="243.199951171875" text="Type" />
                           </columns>
                         </TableView>
                         <Button layoutX="380.0" layoutY="305.0" mnemonicParsing="false" text="Add" />
