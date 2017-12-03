@@ -18,9 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -34,11 +32,49 @@ public class ADMINFXMLController implements Initializable {
      * Initializes the controller class.
      */
     
+    @FXML private TextField saleAccField;
+    @FXML private TextField saleUserAdd;
+    @FXML private TextField salePassAdd;
+    @FXML private TextField saleAccDel;
+    @FXML private TextField saleEditField;
+    
+    @FXML private TextField officeAccField;
+    @FXML private TextField officeUserAdd;
+    @FXML private TextField officePassAdd;
+    @FXML private TextField officeAccDel;
+    @FXML private TextField officeEditField;
+    
+    @FXML private TextField warehouseAccField;
+    @FXML private TextField warehouseUserAdd;
+    @FXML private TextField warehousePassAdd;
+    @FXML private TextField warehouseAccDel;
+    @FXML private TextField warehouseEditField;
     
     @FXML
-    private Button btnLogout;
-    
-    
+    public void saleAccAdd(ActionEvent event) throws IOException{
+        
+    }
+    @FXML
+    public void saleAccDel(ActionEvent event) throws IOException{
+        
+    }
+    @FXML
+    public void officeAccAdd(ActionEvent event) throws IOException{
+        
+    }
+    @FXML
+    public void officeAccDel(ActionEvent event) throws IOException{
+        
+    }
+    @FXML
+    public void wareAccAdd(ActionEvent event) throws IOException{
+        
+    }
+    @FXML
+    public void wareAccDel(ActionEvent event) throws IOException{
+        
+    }
+    @FXML
     public void Logout(ActionEvent event) throws IOException{
         Parent youInParent = FXMLLoader.load(getClass().getResource("LoginFXML.fxml"));
             Scene youInScene = new Scene(youInParent);
