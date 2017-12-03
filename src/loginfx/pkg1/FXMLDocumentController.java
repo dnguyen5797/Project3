@@ -1,9 +1,12 @@
 
  package loginfx.pkg1;
  
+import java.io.File;
  import java.io.IOException;
  import java.net.URL;
+import java.util.ArrayList;
  import java.util.ResourceBundle;
+import java.util.Scanner;
  import javafx.event.ActionEvent;
  import javafx.fxml.FXML;
  import javafx.fxml.FXMLLoader;
@@ -98,4 +101,60 @@
          
      }    
      
- }
+     
+     public static void LoginProto(String[] args) throws Exception {
+     File file = new File("members.txt");
+        Scanner sc = new Scanner(file);
+        while(sc.hasNextLine()){
+            
+            String line = sc.nextLine();
+            String[] members = line.split(":");
+            Users u = new Users(members[0],members[1],members[2]);
+            Users found = findByUserName(members[0]);
+            if(found==null){
+                UsersArray.add(u);
+            }
+            else{
+                found.setPassword(u.getPassword());
+                found.setFXMLfile(u.getFXMLfile());
+        }
+    }
+        System.out.println("Users" + UsersArray.toString());
+        
+        
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter Username: ");
+            String userName = input.nextLine();
+            System.out.println("Enter Password: ");
+            String password = input.nextLine();
+            
+            for (int i = 0; i < UsersArray.size(); i++) {
+                if (UsersArray.get(i).userCheck(userName) == true && UsersArray.get(i).passCheck(password) == true) {
+                    System.out.println("Login SUCCCsefull");
+                    String FXML = UsersArray.get(i).getFXMLfile();
+                    
+                    System.out.println("FXMl is " + FXML);
+                    break;
+                }
+                else{
+                    System.out.println("not logged in");
+                    break;
+            }
+            }
+    }
+    
+    private static Users findByUserName(String name){
+        for (Users u : UsersArray)
+            if (u.getUserName().equals(name)){
+                return u;
+            }
+               return null; 
+    }
+    
+        private static final ArrayList<Users> UsersArray = new ArrayList<>();
+        
+}
+
+
+     
+ 
